@@ -1,0 +1,16 @@
+run.config:
+  engine: nodejs
+  engine.config:
+    runtime: nodejs-8.9
+  extra_steps:
+    - npm install
+  extra_packages:
+    - nginx
+
+data.rethink:
+  image: nanobox/rethinkdb:2.3
+
+web.server:
+  start:
+    nginx: nginx -c /app/config/nginx.conf
+    node: npm start
